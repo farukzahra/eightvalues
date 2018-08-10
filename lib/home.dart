@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 import './utils.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -8,7 +10,35 @@ class Home extends StatelessWidget {
     return new Scaffold(
         backgroundColor: Colors.white,
         appBar: new AppBar(
-          title: const Text('Sobre'),
+          title: const Text('8values'),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: new Image.asset('images/eternify.png'),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text('Sobre'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/home');
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Sair'),
+                onTap: () {
+                  exit(0);
+                },
+              )
+            ],
+          ),
         ),
         body: new Center(
             child: new Column(
@@ -22,8 +52,6 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 30.0,
             ),
-            new Text('Para mais informações acesse',
-                style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(
               height: 15.0,
             ),
@@ -37,9 +65,13 @@ class Home extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print("onTap called.");
-        Navigator.push(context, routeWebView('http://www.eternify.com.br'));
+        final flutterWebviewPlugin = new FlutterWebviewPlugin();
+        flutterWebviewPlugin.launch('http://www.raph.com.br/8values/index.html');
+
+        ///Navigator.push(context, routeWebView('http://www.raph.com.br/8values/index.html'));
       },
-      child: new Text('www.eternify.com.br',style: TextStyle(decoration: TextDecoration.underline)),
+      child: new Text('[Fazer o teste]',
+          style: TextStyle(decoration: TextDecoration.underline)),
     );
   }
 }

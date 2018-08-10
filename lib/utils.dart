@@ -10,7 +10,7 @@ MaterialPageRoute routeWebView(String url) {
       builder: (context) => new WebviewScaffold(
             url: url,
             appBar: new AppBar(
-              title: const Text('Eternify'),
+              title: const Text('8values'),
             ),
             withZoom: false,
             userAgent: kAndroidUserAgent,
